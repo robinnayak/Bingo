@@ -1,0 +1,266 @@
+import random
+# from comp_pattern import comp_pattern1
+import numpy as np
+# from comp_pattern import comp_patterns
+comp_patterns =  np.array([
+  [1,4,7],
+  [2,5,8],
+  [3,6,9]
+])
+# comp_choice = ''
+st = " "
+count_c = 0
+count_p = 0
+sum_d = {
+  "sum_c_d1" : 0,
+  "sum_c_d2" : 0,
+  "sum_c_d3" : 0,
+  "sum_p_d1" : 0,
+  "sum_p_d2" : 0,
+  "sum_p_d3" : 0
+  
+}
+sum_h = {
+  "sum_c_h1" : 0,
+  "sum_c_h2" : 0,
+  "sum_c_h3" : 0,
+  "sum_p_h1" : 0,
+  "sum_p_h2" : 0,
+  "sum_p_h3" : 0
+}
+sum_v = {
+  "sum_c_v1" : 0,
+  "sum_c_v2" : 0,
+  "sum_c_v3" : 0,
+  "sum_p_v1" : 0,
+  "sum_p_v2" : 0,
+  "sum_p_v3" : 0
+}
+n = 3
+
+def human(choice,human_patrn_choice,count_p):
+  print(f"player choice : \n {choice}")
+  
+  # real code from here 
+  print("=======================")
+
+  try:
+    for i in range(3):
+      for j in range(3):
+        if(choice==human_patrn_choice[i][j]):
+          # print(human_patrn_choice[i][j])
+          # print(f"[{i}][{j}]")
+          human_patrn_choice[i][j] = 26
+
+          if (i==j):
+            sum_d["sum_p_d1"] = sum_d["sum_p_d1"] + human_patrn_choice[i][j]
+          if (i==0): 
+            sum_h["sum_p_h1"] = sum_h["sum_p_h1"] + human_patrn_choice[i][j]
+          elif (i==1): 
+            sum_h["sum_p_h2"] = sum_h["sum_p_h2"] + human_patrn_choice[i][j]
+          elif (i==2): 
+            sum_h["sum_p_h3"] = sum_h["sum_p_h3"] + human_patrn_choice[i][j]
+      
+          if (j==0):
+            sum_v["sum_p_v1"] = sum_v["sum_p_v1"] + human_patrn_choice[i][j]
+          elif (j==1):
+            sum_v["sum_p_v2"] = sum_v["sum_p_v2"] + human_patrn_choice[i][j]
+          elif (j==2):
+            sum_v["sum_p_v3"] = sum_v["sum_p_v3"] + human_patrn_choice[i][j]
+          print(f"human pattern : \n {human_patrn_choice}")
+          break
+            # print("it is breaked from here")
+  except IndexError as error:
+    print(f"error: [{error}]")
+
+  if (sum_d["sum_p_d1"]==78) or (sum_h["sum_p_h1"]==78) or (sum_h["sum_p_h2"]==78) or (sum_h["sum_p_h3"]==78) or (sum_v["sum_p_v1"]==78) or (sum_v["sum_p_v2"]==78) or (sum_v["sum_p_v3"]==78):
+    if not sum_d["sum_p_d1"]-78:
+      # print("B")
+      count_p = count_p + 1 
+      sum_d["sum_p_d1"] = 26
+    elif not sum_h["sum_p_h1"]-78:
+      # print("Bi")
+      count_p = count_p + 1 
+      sum_h["sum_p_h1"] = 26
+    elif not sum_h["sum_p_h2"]-78:
+      # print("Bin")
+      count_p = count_p + 1 
+      sum_h["sum_p_h2"] = 26
+    elif not sum_h["sum_p_h3"]-78:
+      # print("Bin")
+      count_p = count_p + 1 
+      sum_h["sum_p_h3"] = 26
+    elif not sum_v["sum_p_v1"]-78:
+      count_p = count_p + 1 
+      sum_v["sum_p_v1"] = 26
+    elif not sum_v["sum_p_v2"]-78:
+      count_p = count_p + 1 
+      sum_v["sum_p_v2"] = 26
+    elif not sum_v["sum_p_v3"]-78:
+      count_p = count_p + 1 
+      sum_v["sum_p_v3"] = 26
+
+    if count_p == 1:
+      st = "B"
+      print('B')
+    elif count_p == 2:
+      st = "BI"
+      print('BI')
+    elif count_p == 3:
+      st = "BIN"
+      print('BIN')
+    elif count_p == 4:
+      st = "BING"
+      print('BING')
+    else:
+      print("try again..") 
+    return st
+  
+
+
+
+# computer code here 
+
+def computer(choice,comp_patrn_choice,count_c):
+  # real code from here 
+  print("computer chossed number",choice)
+  print("computer pattern : \n ",comp_patrn_choice)
+  print("=======================")
+  try:
+    for i in range(3):
+      for j in range(3):
+        if(int(choice)==int(comp_patrn_choice[i][j])):
+          print(comp_patrn_choice[i][j])
+          print(f"[{i}][{j}]")
+          comp_patrn_choice[i][j] = 26
+          
+          if (i==j):
+            sum_d["sum_c_d1"] = sum_d["sum_c_d1"] + int(comp_patrn_choice[i][j])
+            print("i==j : ",sum_d["sum_c_d1"])
+          if (i==0): 
+            sum_h["sum_c_h1"] = sum_h["sum_c_h1"] + int(comp_patrn_choice[i][j])
+            print(" i ==0 : " ,sum_h["sum_c_h1"])
+          elif (i==1): 
+            sum_h["sum_c_h2"] = sum_h["sum_c_h2"] + int(comp_patrn_choice[i][j])
+          elif (i==2): 
+            sum_h["sum_c_h3"] = sum_h["sum_c_h3"] + int(comp_patrn_choice[i][j])
+      
+          if (j==0):
+            sum_v["sum_c_v1"] = sum_v["sum_c_v1"] + int(comp_patrn_choice[i][j])
+          elif (j==1):
+            sum_v["sum_c_v2"] = sum_v["sum_c_v2"] + int(comp_patrn_choice[i][j])
+          elif (j==2):
+            sum_v["sum_c_v3"] = sum_v["sum_c_v3"] + int(comp_patrn_choice[i][j])
+          
+          print("computer pattern : ",comp_patrn_choice)
+
+  except IndexError as error:
+    print(f"error: [{error}]")
+  print ("================================")
+  print(f"fdiagonal {sum_d}")
+  print ("================================")
+  print(f"fhorizontal {sum_h}")
+  print ("================================")
+  print(f"fvertical {sum_v}")
+
+  if (sum_d["sum_c_d1"]==78) or (sum_h["sum_c_h1"]==78) or (sum_h["sum_c_h2"]==78) or (sum_h["sum_c_h3"]==78) or (sum_v["sum_c_v1"]==78) or (sum_v["sum_c_v2"]==78) or (sum_v["sum_c_v3"]==78):
+    if not sum_d["sum_c_d1"]-78:
+      # print("B")
+      count_c = count_c + 1 
+      sum_d["sum_c_d1"] = 26
+    elif not sum_h["sum_c_h1"]-78:
+      # print("Bi")
+      count_c = count_c + 1 
+      sum_h["sum_c_h1"] = 26
+    elif not sum_h["sum_c_h2"]-78:
+      # print("Bin")
+      count_c = count_c + 1 
+      sum_h["sum_c_h2"] = 26
+    elif not sum_h["sum_c_h3"]-78:
+      # print("Bin")
+      count_c = count_c + 1 
+      sum_h["sum_c_h3"] = 26
+    elif not sum_v["sum_c_v1"]-78:
+      count_c = count_c + 1 
+      sum_v["sum_c_v1"] = 26
+    elif not sum_v["sum_c_v2"]-78:
+      count_c = count_c + 1 
+      sum_v["sum_c_v2"] = 26
+    elif not sum_v["sum_c_v3"]-78:
+      count_c = count_c + 1 
+      sum_v["sum_c_v3"] = 26
+
+    if count_c == 1:
+      st = "B"
+      print('B')
+    elif count_c == 2:
+      st = "BI"
+      print('BI')
+    elif count_c == 3:
+      st = "BIN"
+      print('BIN')
+    elif count_c == 4:
+      st = "BING"
+      print('BING')
+    else:
+      print("try again..")
+    return st 
+
+
+
+# ===================================================
+# play bingo start code  
+def play_bingo(comp_patterns,computer,human,count_c,count_p):
+  player_patrn = np.zeros((n,n),int)
+  print("enter data form here : ")
+  for i in range(n):
+    for j in range(n):
+      player_patrn[i][j] = int(input())
+  # rdm = random.choice(comp_patterns)
+  rdm = comp_patterns
+  print("computer pattern is : \n",rdm)
+  print("human pattern is : \n",player_patrn)
+  i = 1
+  comp_choice = [1,2,3,4,5,6,7,8,9]
+  rdm_choice = random.choice(comp_choice)
+  # comp_choice = random.choice(comp_choic)
+  while True:
+    print("number to choose : ",comp_choice)
+    if(i==1):
+      player_choice = int(input("enter your choice: "))
+      human(player_choice,player_patrn,count_p)
+      computer(player_choice,rdm,count_c)
+      i = i+1
+      comp_choice.remove(player_choice)
+      print("choice array: ",comp_choice)
+    
+    else:
+      rdm_choice = random.choice(comp_choice)
+      print("computer choosed number: ",rdm_choice)
+      human(rdm_choice,player_patrn,count_p)
+      computer(rdm_choice,rdm,count_c)
+      i = i-1
+      comp_choice.remove(rdm_choice)
+      print("choice array: ",comp_choice)
+
+
+    # computer = comp_patrn(rdm,count_c,comp_choice)
+    # player = human_patrn(player_patrn,count_p,player_choice)
+    player = human(player_choice,player_patrn,count_p)
+    computer1 = computer(rdm_choice,rdm,count_c)
+    # print(player)
+    # print(computer1)
+    # print("rdmchoice = ",rdm_choice)
+    # print("rdm pattern = ",rdm)
+    if player == "BING":
+      print("player won the game")
+      break
+    
+      
+    if computer1 == "BING":
+      print("computer won the game")
+      break
+    # for computer 
+
+play_bingo(comp_patterns,computer,human,count_c,count_p)
+# play_bingo(comp_pattern,computer,human)

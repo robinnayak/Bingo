@@ -1,0 +1,112 @@
+import numpy as np 
+
+# ar = np.array([[1,2,3],[4,5,6],[7,8,9]])
+ar = np.array([[1,2,3],[4,5,6],[7,8,9]])
+st = ""
+count = 0
+k = ""
+sum_d = {
+  "sum_d1" : 0,
+  "sum_d2" : 0,
+  "sum_d3" : 0,
+}
+sum_h = {
+  "sum_h1" : 0,
+  "sum_h2" : 0,
+  "sum_h3" : 0,
+}
+sum_v = {
+  "sum_v1" : 0,
+  "sum_v2" : 0,
+  "sum_v3" : 0,
+}
+total_sum = 0
+print(ar)
+print ("================================")
+# l = 0
+while(True):
+  k = int(input("Enter: ")) 
+  try:
+    for i in range(3):
+      for j in range(3):
+        if(k==ar[i][j]):
+          print(ar[i][j])
+          print(f"[{i}][{j}]")
+          ar[i][j] = 26
+          if (i==j):
+            sum_d["sum_d1"] = sum_d["sum_d1"] + ar[i][j]
+          if (i==0): 
+            sum_h["sum_h1"] = sum_h["sum_h1"] + ar[i][j]
+          elif (i==1): 
+            sum_h["sum_h2"] = sum_h["sum_h2"] + ar[i][j]
+          elif (i==2): 
+            sum_h["sum_h3"] = sum_h["sum_h3"] + ar[i][j]
+      
+          if (j==0):
+            sum_v["sum_v1"] = sum_v["sum_v1"] + ar[i][j]
+          elif (j==1):
+            sum_v["sum_v2"] = sum_v["sum_v2"] + ar[i][j]
+          elif (j==2):
+            sum_v["sum_v3"] = sum_v["sum_v3"] + ar[i][j]
+          break
+  except IndexError as error:
+    print(f"error: [{error}]")
+  print(ar)
+  # print(ar)
+  
+  if (sum_d["sum_d1"]==78) or (sum_h["sum_h1"]==78) or (sum_h["sum_h2"]==78) or (sum_h["sum_h3"]==78) or (sum_v["sum_v1"]==78) or (sum_v["sum_v2"]==78) or (sum_v["sum_v3"]==78):
+    if not sum_d["sum_d1"]-78:
+      # print("B")
+      count = count + 1 
+      sum_d["sum_d1"] = 26
+    elif not sum_h["sum_h1"]-78:
+      # print("Bi")
+      count = count + 1 
+      sum_h["sum_h1"] = 26
+    elif not sum_h["sum_h2"]-78:
+      # print("Bin")
+      count = count + 1 
+      sum_h["sum_h2"] = 26
+    elif not sum_h["sum_h3"]-78:
+      # print("Bin")
+      count = count + 1 
+      sum_h["sum_h3"] = 26
+    elif not sum_v["sum_v1"]-78:
+      count = count + 1 
+      sum_v["sum_v1"] = 26
+    elif not sum_v["sum_v2"]-78:
+      count = count + 1 
+      sum_v["sum_v2"] = 26
+    elif not sum_v["sum_v3"]-78:
+      count = count + 1 
+      sum_v["sum_v3"] = 26
+
+    if count == 1:
+      st = "B"
+      print('B')
+    elif count == 2:
+      st = "BI"
+      print('BI')
+    elif count == 3:
+      st = "BIN"
+      print('BIN')
+    elif count == 4:
+      st = "BING"
+      print('BING')
+    print(count)
+  else :
+    print("try again..") 
+  #     # if (i==j and ar[i][j]==0) or (i==j+1 and ar[i][j]==0) or (j==i+1 and ar[i][j]):
+  # total_sum = sum_d["sum_d1"] + sum_h["sum_h1"] + sum_h["sum_h2"] + sum_h["sum_h3"] + sum_v["sum_v1"] + sum_v["sum_v2"] + sum_v["sum_v3"]
+  if (st == "BING"):
+    break
+
+
+print ("================================")
+print(f"fdiagonal {sum_d}")
+print ("================================")
+print(f"fhorizontal {sum_h}")
+print ("================================")
+print(f"fvertical {sum_v}")
+
+

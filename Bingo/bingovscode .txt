@@ -1,0 +1,167 @@
+import random 
+st = ""
+comp_pattern = [[1,2,3],[4,5,6],[7,8,9]]
+player_pattern = [[1,2,3],[4,5,6],[7,8,9]] 
+sum_d = {
+  "sum_c_d1" : 0,
+  "sum_p_d1" : 0  
+}
+sum_h = {
+  "sum_c_h1" : 0,
+  "sum_c_h2" : 0,
+  "sum_c_h3" : 0,
+  "sum_p_h1" : 0,
+  "sum_p_h2" : 0,
+  "sum_p_h3" : 0
+}
+sum_v = {
+  "sum_c_v1" : 0,
+  "sum_c_v2" : 0,
+  "sum_c_v3" : 0,
+  "sum_p_v1" : 0,
+  "sum_p_v2" : 0,
+  "sum_p_v3" : 0
+}
+sum_c = [sum_d["sum_c_d1"],sum_h["sum_c_h1"],sum_h["sum_c_h2"], sum_h["sum_c_h3"], sum_v["sum_c_v1"], sum_v["sum_c_v2"], sum_v["sum_c_v3"]]
+sum_p = [sum_d["sum_p_d1"],sum_h["sum_p_h1"],sum_h["sum_p_h2"], sum_h["sum_p_h3"], sum_v["sum_p_v1"], sum_v["sum_p_v2"], sum_v["sum_p_v3"]]
+
+count = {
+    "comp_count" : 0,
+    "player_count" : 0
+}
+countall = [count["comp_count"],count["player_count"]]
+def computer():
+    pass
+def player():
+    pass
+def combine(choosed_number,pattern,sum,count):    
+    print("=============================")
+    print(pattern)
+    for i in range(3):
+        for j in range(3):
+            if pattern[i][j] == choosed_number:
+
+                print(f"[{i}][{j}]")
+                pattern[i][j] = 26
+                if i==j: #diagonal 
+                    sum[0] = sum[0] + pattern[i][j]
+                if i==0: #horizontal 
+                    sum[1] = sum[1] + pattern[i][j]
+                elif i==1: #horizontal
+                    sum[2] = sum[2] + pattern[i][j]      
+                elif i==2:
+                    sum[3] = sum[3] + pattern[i][j]
+                if j==0:
+                    sum[4] = sum[4] + pattern[i][j]
+                elif j==1 :
+                    sum[5] = sum[5] + pattern[i][j] 
+                elif j==2:
+                    sum[6] = sum[6] + pattern[i][j] 
+    print(pattern)
+    print("total sum is = ",sum)
+    if (sum[0]==78) or (sum[1]==78) or (sum[2]==78) or (sum[3]==78) or (sum[4]==78) or (sum[5]==78) or (sum[6]==78):
+        if not sum[0] - 78:
+            count = count + 1
+            sum[0] = 26
+        if not sum[1] - 78:
+            count = count + 1
+            sum[1] = 26
+        if not sum[2] - 78:
+            count = count + 1
+            sum[2] = 26
+        if not sum[3] - 78:
+            count = count + 1
+            sum[3] = 26
+        if not sum[4] - 78:
+            count = count + 1
+            sum[4] = 26
+        if not sum[5] - 78:
+            count = count + 1
+            sum[5] = 26
+        if not sum[6] - 78:
+            count = count + 1
+            sum[6] = 26
+        if count == 1:
+            st = "B"
+            print('B')
+        elif count == 2:
+            st = "BI"
+            print('BI')
+        elif count == 3:
+            st = "BIN"
+            print('BIN')
+        elif count == 4:
+            st = "BING"
+            print('BING')
+    print(count)
+    print("=============================")
+    # print("\n")
+
+# def winner(win):
+#     if win == 1:
+#         print("b")
+#     elif win == 2:
+#         print("BI")
+#     elif win == 3:
+#         print("BIN")
+#     elif win == 4:
+#         print("BING")
+#         return "BING"
+
+def bingo(comp_pattern,player_pattern,sum_c,sum_p,countall):
+    choices = [1,2,3,4,5,6,7,8,9]
+    player_name = input ("player name : ")
+    print("computer Vs ",player_name)
+    print("choices are: ",choices)
+    k = 0
+    l = 0
+    # while k!=2:
+    while True:
+        if l==0:
+            comp_number = random.choice(choices)
+            choices.remove(comp_number)
+            print("=============computer=============")
+            print("computer choosed: ",comp_number)            
+            print("Remaining choices are : ", choices)
+            # Cwin = combine(comp_number,comp_pattern,sum_c,countall[0])
+            combine(comp_number,comp_pattern,sum_c,countall[0])
+            # Pwin = combine(comp_number,player_pattern,sum_p,countall[1])
+            combine(comp_number,player_pattern,sum_p,countall[1])
+            # Break_c = winner(Cwin)
+            # Break_p = winner(Pwin)
+            # if Break_c == "BING":
+                # print("computer won")
+                # break
+            # if Break_p == "BING":
+                # print(f"{player_name} won")
+                # break
+            # computer()
+            print("computer count is : ",countall[0])
+            print("player count is : ",countall[1])
+            l=1
+        else:
+            player_number = int(input("your choice: "))
+            choices.remove(player_number)
+            print("=============player===============")
+            print("human choosed: ", player_number)
+            print("Remaining choices are : ", choices)
+            # Pwin = combine(player_number,player_pattern,sum_p,countall[1])
+            combine(player_number,player_pattern,sum_p,countall[1])
+            # Cwin = combine(player_number,comp_pattern,sum_c,countall[0])
+            combine(player_number,comp_pattern,sum_c,countall[0])
+            # Break_p = winner(Pwin)
+            # Break_c = winner(Cwin)
+            # if Break_p == "BING":
+                # print(f"{player_name} won")
+                # break
+            # if Break_c == "BING":
+                # print("computer won")
+                # break
+            print("computer count is : ",countall[0])
+            print("player count is : ",countall[1])
+            l=0
+        if choices == []:
+            print("No Remaining Choices Are There: ",choices)
+            break
+
+bingo(comp_pattern,player_pattern,sum_c,sum_p,countall)

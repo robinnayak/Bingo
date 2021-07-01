@@ -1,0 +1,45 @@
+# truth "what is your real age"
+# dare "doo 50 push up"
+import random
+
+player_name1 = input("first player name: ") # robin
+player_number1 = int(input("enter your lucky number: ")) #4
+player_name2 = input("second player name: ")
+player_number2 = int(input("enter your lucky number: "))
+player_name3 = input("third player name: ")
+player_number3 = int(input("enter your lucky number: "))
+player_name4 = input("fourth player name: ")
+player_number4 = int(input("enter your lucky number: "))
+
+print("welcome to the game of truth and dare ",player_name1,player_name2,player_name3,player_name4)
+
+player_number = [player_number1,player_number2,player_number3,player_number4] #4
+
+
+player_selected = random.choices(player_number)
+#player selected = [2]
+print("selected number : ",player_selected[0]) # player_selected = 2
+if (player_number1==player_selected[0]): #4 == 2
+  print("welcome ",player_name1)
+if (player_number2==player_selected[0]): #2 == 2
+  print("welcome ",player_name2) #rohit
+if (player_number3==player_selected[0]): #1 == 2
+  print("welcome ",player_name3)
+if (player_number4==player_selected[0]): #5 == 2
+  print("welcome ",player_name4)
+
+game_choice = input("choose truth or dare : ")
+
+if (game_choice == "truth"):
+  truth_question1 = "what is your real age"
+  truth_question2 = "what is your wifi password"
+  truth = [truth_question1,truth_question2]
+  truth_selected = random.choice(truth)
+  print("your truth question is : ",truth_selected) 
+if (game_choice == "dare"):
+  dare_question1 = "do 50 push up"
+  dare_question2 = "poke someone favourite to you"
+  dare = [dare_question1,dare_question2]
+  dare_selected = random.choices(dare)
+  print("your dare question is : ",dare_selected)
+
